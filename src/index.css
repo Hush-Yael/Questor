@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'AR One Sans';
+  src: url('/fonts/AR-One-Sans.woff2') format('woff2 supports variations'), url('/fonts/AR-One-Sans.woff2') format('woff2-variations'), url('/fonts/AR-One-Sans.ttf') format("truetype");
+  font-weight: 100 1000;
+  font-style: normal;
+}
+
+:root {
+  min-width: 320px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "AR One Sans", sans-serif !important;
+}
+
+:root,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+:root svg {
+  display: inline-block;
+  vertical-align: middle;
+}

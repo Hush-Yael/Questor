@@ -1,0 +1,137 @@
+:root {
+  background: var(--base-background);
+  color: var(--base-text);
+  font-family: "AR One Sans",
+    "Segoe UI",
+    ui-sans-serif,
+    sans-serif,
+    system-ui,
+    system-ui,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+  /* pallete */
+  --orchid-white: #fffdf5;
+  --chrome-white: #ccc5b9;
+  --warm-black: #252422;
+  --masala: #403d39;
+  --vivid-vermilion: #eb5e28;
+}
+
+:root {
+  /* elements */
+  --base-background: hsl(53, 30%, 93%);
+  --base-text: var(--warm-black);
+  --elevated-background: var(--orchid-white);
+
+  /* shadows */
+  --elevated-shadow: inset 0 1px 2px #ffffff30,
+    /* top highlight */
+    0 1px 2px #00000030,
+    /* dark shadow */
+    0 2px 4px #00000015;
+
+  --btn-shadow: inset 0 2px 2px #ffffff30,
+    /* top highlight */
+    0 1px 2px #00000030,
+    /* dark shadow */
+    0 1px 4px #0002;
+
+  --btn-secondary-shadow: var(--btn-shadow);
+
+  --selected-item-shadow: inset 0 1px 2px #ffffff50,
+    /* top highlight */
+    0 2px 4px #00000030,
+    /* dark shadow */
+    0 3px 8px #00000005;
+
+  /* colors */
+  --primary: var(--vivid-vermilion);
+  --primary-hover: #ce5527;
+  --primary-text: var(--orchid-white);
+
+  --secondary: var(--masala);
+  --secondary-hover: #5c5a55;
+  --secondary-text: var(--orchid-white);
+
+  --muted: var(--chrome-white);
+  --muted-text: hsl(27, 4%, 45.1519%);
+
+  --highlight: hsl(39.3103 64.4444% 91.1765%);
+  --highlight-text: var(--warm-black);
+
+  /* statuses */
+  --danger: hsl(357, 100%, 45%);
+  --danger-text: hsl(0, 0%, 100%);
+
+  --info: hsl(210, 100%, 50%);
+  --info-text: hsl(224, 100%, 4%);
+
+  --success: hsl(152, 100%, 50%);
+  --success-text: hsl(139, 100%, 4%);
+
+  --warning: hsl(53, 100%, 50%);
+  --warning-text: hsl(53, 100%, 4%);
+
+  /* borders */
+  --border: hsl(50.0000 21.4286% 89.0196%);
+  --input: hsl(50.0000 21.4286% 89.0196%);
+  --ring: hsl(50.0000 3.0000% 60.7843%);
+}
+
+.dark {
+  /* elements */
+  --base-background: hsl(60 3.5714% 10.9804%);
+  --base-text: hsl(0 0% 90%);
+  --elevated-background: var(--warm-black);
+
+  /* shadows */
+  --btn-shadow: inset 0 1px 2px #ffffff50,
+    /* top highlight */
+    0 2px 4px #00000030,
+    /* dark shadow */
+    0 4px 8px #00000015;
+
+  --btn-secondary-shadow: inset 0 1px 2px #fffa,
+    0 4px 6px #00000030,
+    0 6px 10px #00000015;
+
+  --selected-item-shadow: inset 0 1px 2px #ffffff50,
+    /* top highlight */
+    0 2px 4px #00000030,
+    /* dark shadow */
+    0 4px 8px #00000015;
+
+  /* colors */
+  --secondary: var(--chrome-white);
+  --secondary-hover: hsl(35, 10%, 64%);
+  --secondary-text: var(--warm-black);
+
+  --muted: var(--masala);
+  --muted-text: hsl(27, 4%, 57.5000%);
+
+  --highlight: hsl(30.0000 6.0000% 19.6078%);
+  --highlight-text: var(--base-text);
+
+  --danger: hsl(359, 100%, 70%);
+  --danger-text: hsl(223.8136 0.0004% 98.0256%);
+
+  --info: hsl(210, 100%, 70%);
+  --info-text: hsl(224, 100%, 4%);
+
+  --success: hsl(152, 100%, 70%);
+  --success-text: hsl(139, 100%, 4%);
+
+  --warning: hsl(53, 100%, 70%);
+  --warning-text: hsl(53, 100%, 4%);
+
+  /* borders */
+  --border: hsl(22.5000 6.7797% 23.1373%);
+  --input: hsl(22.5000 6.7797% 23.1373%);
+  --ring: hsl(50.0000 3.0000% 60.7843%);
+}

@@ -1,0 +1,78 @@
+.btn {
+  @apply flex items-center justify-center font-bold outline-(#0000 solid 2 offset-1) transition-[border-color, color, outline-color, background-color] duration-200 cursor-pointer;
+}
+
+.btn.primary {
+  @apply shadow-[--btn-shadow];
+}
+
+.btn.secondary {
+  @apply shadow-[--btn-secondary-shadow];
+}
+
+.btn:not(.icon).ghost,
+.btn:not(.icon).primary,
+.btn:not(.icon).secondary {
+  corner-shape: squircle;
+  border-radius: 3px;
+}
+
+.btn.icon,
+.btn.icon.primary,
+.btn.icon.secondary {
+  @apply max-w-max max-h-max w-6 h-6;
+}
+
+.btn.icon.circle {
+  @apply rounded-full;
+}
+
+.btn.primary,
+.btn.icon.primary {
+  @apply bg-primary text-primary-text focus-visible:outline-secondary media-mouse:hover:bg-primary-hover media-touch:active:bg-primary-hover;
+}
+
+.btn.secondary {
+  @apply media-mouse:hover:bg-red-500 media-touch:active:bg-red-500;
+}
+
+.btn.secondary,
+.btn.icon.secondary {
+  @apply bg-secondary text-secondary-text focus-visible:outline-primary media-mouse:hover:bg-secondary-hover media-touch:active:bg-secondary-hover;
+}
+
+.btn.ghost {
+  @apply media-mouse:hover:bg-highlight media-touch:active:bg-highlight focus-visible:bg-highlight text-highlight-text focus-visible:outline-highlight-text;
+}
+
+.btn.xs {
+  @apply text-xs px-3 py-1;
+}
+
+.btn.icon.xs {
+  @apply h-5 w-5 py-1 px-2;
+}
+
+.btn.sm {
+  @apply text-xs px-4 py-1.5;
+}
+
+.btn.icon.sm {
+  @apply px-3 py-1.5;
+}
+
+.btn.md {
+  @apply px-4.5 py-1;
+}
+
+.btn.icon.md {
+  @apply text-lg p-4;
+}
+
+.btn.lg {
+  @apply text-lg px-5 py-1.5;
+}
+
+.btn.icon.lg {
+  @apply text-[1.75rem] p-5;
+}

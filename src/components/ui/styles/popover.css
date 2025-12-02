@@ -1,0 +1,17 @@
+/* base styles */
+.menu-item {
+  @apply py-1 px-4 outline-0 transition-[background-color] duration-200 select-none last:rounded-b-box first:rounded-t-box;
+}
+
+/* states */
+.menu-item {
+  @apply media-mouse:(focus-visible:bg-highlight hover:bg-highlight) media-touch:active:bg-highlight data-[selected]:(bg-primary text-primary-text shadow-[--selected-item-shadow] font-600 media-mouse:(hover:bg-primary-hover focus-visible:bg-primary-hover focus-visible:not-hover:outline-(1 solid secondary)) media-touch:active:bg-primary-hover);
+}
+
+.menu-item svg {
+  @apply h-4.5 w-4.5;
+}
+
+.menu-item-label {
+  @apply flex items-center gap-x-2;
+}

@@ -1,0 +1,16 @@
+{
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "workbench.editor.wrapTabs": true,
+  "cSpell.words": ["masala", "shadcn", "Shadcn", "tanstack"],
+  "css.customData": [
+    "/home/yael/Documentos/proyectitos/Questor/.vscode/css-custom-data.json"
+  ]
+}
