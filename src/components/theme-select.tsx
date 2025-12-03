@@ -1,7 +1,7 @@
 import { type UserTheme, useTheme } from "~/contexts/theme/provider";
-import { Select } from "@kobalte/core/select";
+import { SegmentedControl } from "@kobalte/core/segmented-control";
 import { ClientOnly } from "@tanstack/solid-router";
-import type { JSX } from "solid-js";
+import { For, type JSX } from "solid-js";
 import Icons from "~/components/ui/icons";
 import type { IconProps } from "solid-icons";
 
@@ -17,46 +17,78 @@ const themeOptions: Option[] = [
   { icon: Icons.system, label: "Sistema", value: "system" },
 ];
 
-export default () => {
+const classes = {
+  root: "size-max",
+  list: "flex gap-1 box p-1 px-1.75 rounded-full",
+  item: "relative",
+  itemLabel:
+    "flex items-center justify-center rounded-full size-6.5 select-none transition-[background-color,color] peer-disabled:(opacity-50 cursor-not-allowed) peer-not-checked:(text-muted-text) peer-checked:(bg-primary text-primary-text shadow-[--btn-shadow]) peer-not-[:checked,:disabled]:(cursor-pointer hover:(bg-muted)) dark:peer-not-[:checked,:disabled]:hover:shadow-[--elevated-shadow] peer-checked:[&>svg>path:nth-child(2)]:fill-current",
+};
+
+export default (props: { class?: string }) => {
   const { userTheme, setTheme } = useTheme();
 
   return (
-    <ClientOnly fallback={<div>Loading...</div>}>
-      <Select<Option>
+    <ClientOnly
+      fallback={
+        <div
+          role="radiogroup"
+          class={props.class ? `${classes.root} ${props.class}` : classes.root}
+        >
+          <div role="presentation" class={classes.list}>
+            <For each={themeOptions}>
+              {(option) => (
+                <div class={classes.item}>
+                  <input
+                    id={"theme-" + option.value}
+                    class="sr-only"
+                    type="radio"
+                    name="theme"
+                    disabled
+                    value={option.value}
+                  />
+                  <label
+                    for={"theme-" + option.value}
+                    class={
+                      classes.itemLabel + " !opacity-25 !cursor-not-allowed"
+                    }
+                  >
+                    <span class="sr-only">{option.label}</span>
+                    <option.icon />
+                  </label>
+                </div>
+              )}
+            </For>
+          </div>
+        </div>
+      }
+    >
+      <SegmentedControl
+        class={props.class ? `${classes.root} ${props.class}` : classes.root}
         options={themeOptions}
-        optionValue="value"
-        optionTextValue="label"
-        placeholder="Select a theme"
-        disallowEmptySelection
-        allowDuplicateSelectionEvents={false}
-        value={themeOptions.find((theme) => theme.value === userTheme())}
-        onChange={(option) => setTheme(option!.value)}
-        itemComponent={(props) => (
-          <Select.Item item={props.item} class="menu-item">
-            <Select.ItemLabel class="menu-item-label">
-              <props.item.rawValue.icon /> {props.item.textValue}
-            </Select.ItemLabel>
-          </Select.Item>
-        )}
-        defaultOpen
+        value={themeOptions.find((theme) => theme.value === userTheme())!.value}
+        // @ts-expect-error: el valor es un tema correcto
+        onChange={setTheme}
       >
-        <Select.Trigger>
-          <Select.Value<Option>>
-            {(state) => (
-              <>
-                <span class="sr-only">{state.selectedOption()!.label}</span>
-                {state.selectedOption()!.icon}
-              </>
-            )}
-          </Select.Value>
-        </Select.Trigger>
+        <SegmentedControl.Label class="sr-only">
+          Seleccionar tema del sitio
+        </SegmentedControl.Label>
 
-        <Select.Portal>
-          <Select.Content class="box">
-            <Select.Listbox />
-          </Select.Content>
-        </Select.Portal>
-      </Select>
+        <div role="presentation" class={classes.list}>
+          <For each={themeOptions}>
+            {(option) => (
+              <SegmentedControl.Item value={option.value} class={classes.item}>
+                <SegmentedControl.ItemInput class="peer sr-only" />
+
+                <SegmentedControl.ItemLabel class={classes.itemLabel}>
+                  <span class="sr-only">{option.label}</span>
+                  <option.icon />
+                </SegmentedControl.ItemLabel>
+              </SegmentedControl.Item>
+            )}
+          </For>
+        </div>
+      </SegmentedControl>
     </ClientOnly>
   );
 };
