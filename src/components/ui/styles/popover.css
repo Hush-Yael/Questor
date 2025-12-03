@@ -1,6 +1,6 @@
 /* base styles */
 .menu-item {
-  @apply py-1 px-4 outline-0 transition-[background-color] duration-200 select-none last:rounded-b-box first:rounded-t-box;
+  @apply py-1 px-4 outline-0 transition-[background-color] select-none last:rounded-b-box first:rounded-t-box;
 }
 
 /* states */
