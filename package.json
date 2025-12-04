@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@tanstack/devtools-vite": "^0.3.11",
+    "eruda": "^3.4.3",
     "oxlint": "^1.30.0",
     "typescript": "^5.7.2",
     "unocss": "^66.5.10-beta.1",

@@ -32,6 +32,28 @@ export const Route = createRootRouteWithContext()({
       { rel: "stylesheet", href: themeCss },
       { rel: "stylesheet", href: compStylesCss },
     ],
+    scripts: import.meta.env.DEV
+      ? [
+          {
+            type: "module",
+            children: `
+              if (
+                /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone|webOS/i.test(
+                  navigator.userAgent
+                ) ||
+                "ontouchstart" in window ||
+                navigator.maxTouchPoints > 0
+              ) {
+                await import("/node_modules/eruda/eruda.js");
+
+                // @ts-expect-error: eruda se añade a window
+                if (window.eruda) window.eruda.init();
+                else throw new Error("eruda not found");
+              }
+            `,
+          },
+        ]
+      : undefined,
   }),
   shellComponent: RootComponent,
 });
