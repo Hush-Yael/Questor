@@ -22,7 +22,7 @@ const classes = {
   list: "flex gap-1 box p-1 px-1.75 rounded-full",
   item: "relative",
   itemLabel:
-    "flex items-center justify-center rounded-full size-6.5 select-none transition-[background-color,color] peer-disabled:(opacity-50 cursor-not-allowed) peer-not-checked:(text-muted-text) peer-checked:(bg-primary text-primary-text shadow-[--btn-shadow]) peer-not-[:checked,:disabled]:(cursor-pointer hover:(bg-highlight shadow-[--elevated-shadow])) peer-checked:[&>svg>path:nth-child(2)]:fill-current",
+    "flex items-center justify-center rounded-full size-6.5 select-none transition-[background-color,color] peer-disabled:(opacity-50 cursor-not-allowed) peer-not-checked:(text-muted-text) peer-checked:(bg-primary text-primary-text shadow-[--btn-shadow]) peer-not-[:checked,:disabled]:(cursor-pointer hover:(bg-highlight shadow-[--elevated-shadow])) peer-checked:[&>svg>path:nth-child(2)]:fill-current peer-focus-visible:(outline-(1 solid current)))",
 };
 
 export default (props: { class?: string }) => {
