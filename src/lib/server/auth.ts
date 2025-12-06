@@ -66,18 +66,24 @@ export const authenticateUser = createServerFn({ method: "POST" })
     (data: { username: string; password: string; login: boolean }) => data
   )
   .handler(async ({ data }) => {
-    const user = await getUserByName(data.username);
-    if ((!user && data.login) || (user && !data.login))
+    const isSigningIn = data.login === true,
+      isSigningUp = !isSigningIn,
+      user = await getUserByName(data.username);
+
+    if ((isSigningIn && !user) || isSigningUp)
       return {
         data: null,
-        error: data.login
+        error: isSigningIn
           ? "No existe un usuario con ese nombre"
-          : "Ya existe un usuario con ese nombre",
-        validName: false,
+          : user
+            ? "Ya existe un usuario con ese nombre"
+            : null,
+        validName: isSigningUp && !user ? true : false,
         validPass: null,
       };
 
     const isValid = await bcrypt.compare(data.password, user!.password);
+
     return isValid
       ? {
           data: user,

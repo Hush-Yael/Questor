@@ -38,7 +38,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
             },
           };
 
-        if (!validPass)
+        if (validPass === false)
           return {
             fields: {
               password: {
