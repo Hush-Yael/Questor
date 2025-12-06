@@ -63,9 +63,9 @@ function RootComponent() {
     <html lang="es">
       <head>
         <HydrationScript />
-        <HeadContent />
       </head>
       <body>
+        <HeadContent />
         <ThemeProvider>
           <Suspense>
             <TanStackQueryProvider>
