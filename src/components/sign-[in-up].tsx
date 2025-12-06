@@ -21,7 +21,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
   const Form = createForm(() => ({
     defaultValues: {
       username: "",
-      password: "123",
+      password: "",
     } satisfies typeof tables.users.$inferInsert,
     validators: {
       onSubmitAsync: async ({ value: data }) => {
