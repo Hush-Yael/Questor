@@ -32,6 +32,14 @@ body {
   vertical-align: middle;
 }
 
+svg:not([fill=none]) {
+  fill: currentColor;
+}
+
+svg[stroke-width]:not([stroke=none]) {
+  stroke: currentColor;
+}
+
 ::selection {
   background-color: var(--primary);
   color: var(--primary-text);
