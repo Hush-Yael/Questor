@@ -4,7 +4,7 @@ import {
   createEffect,
   createSignal,
 } from "solid-js";
-import { z } from "zod";
+import * as z from "zod";
 import ThemeContext from "./context";
 import {
   setStoredTheme,
