@@ -1,0 +1,54 @@
+.toast {
+  @apply 'rounded-box data-[opened]:animate-[toast-slide-in_200ms_cubic-bezier(0.16,_1,_0.3,_1)]! data-[closed]:animate-[content-hide-vertical_200ms_ease-in]! data-[swipe=move]:transform-translate-y-[var(--kb-toast-swipe-move-y)] data-[swipe=cancel]:transform-translate-y-[0] data-[swipe=cancel]:transition-transform data-[swipe=end]:animate-[toast-swipe-out_150ms_cubic-bezier(0.4,_0,_0.2,_1)]'
+}
+
+.toast-content>svg {
+  filter:
+    drop-shadow(0 3px 1px #0002) drop-shadow(0 1px 0 #0002) drop-shadow(1px 1px 0 #0001) drop-shadow(-1px 1px 0 #0001);
+}
+
+.toast-loader {
+  --bg: #0002;
+  --c: no-repeat linear-gradient(var(--primary) 0 0);
+  background: var(--c), var(--c), var(--bg);
+  background-size: 60% 100%;
+  animation: toast-loader 1.5s ease-in-out infinite;
+}
+
+.dark .toast-loader {
+  --bg: #fff2;
+}
+
+@keyframes toast-loader {
+  0% {
+    background-position: -150% 0, -150% 0
+  }
+
+  66% {
+    background-position: 250% 0, -150% 0
+  }
+
+  100% {
+    background-position: 250% 0, 250% 0
+  }
+}
+
+@keyframes toast-slide-in {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-swipe-out {
+  from {
+    transform: translateY(var(--kb-toast-swipe-end-y));
+  }
+
+  to {
+    transform: translateY(calc(100% + var(--n-h)));
+  }
+}
