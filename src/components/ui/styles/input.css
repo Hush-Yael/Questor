@@ -1,0 +1,16 @@
+.input-label {
+  @apply block text-sm font-medium text-muted-text mb-2;
+}
+
+.input {
+  @apply 'w-full px-2 py-1 border border-[--border] rounded-field placeholder-muted-text [&:focus,&:focus-within]:outline-none [&:focus,&:focus-within]:ring-primary [&:focus,&:focus-within]:border-primary bg-#00000008 dark:bg-#ffffff09 text-sm caret-primary transition-colors';
+}
+
+.input[aria-invalid="true"],
+.group[data-invalid] .input {
+  @apply border-danger;
+}
+
+.input-error {
+  @apply text-danger text-xs mt-1;
+}

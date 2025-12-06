@@ -9,7 +9,7 @@
     "**/routeTree.gen.ts": true
   },
   "workbench.editor.wrapTabs": true,
-  "cSpell.words": ["masala", "shadcn", "Shadcn", "tanstack"],
+  "cSpell.words": ["masala", "shadcn", "Shadcn", "tanstack", "Twotone"],
   "css.customData": [
     "/home/yael/Documentos/proyectitos/Questor/.vscode/css-custom-data.json"
   ]

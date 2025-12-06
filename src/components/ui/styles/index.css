@@ -1,5 +1,6 @@
 @import "./btn.css";
 @import "./popover.css";
+@import "./input.css";
 
 .col {
   @apply flex flex-col;
@@ -7,6 +8,14 @@
 
 .box {
   @apply bg-elevated rounded-box light:(border-t border-[#00000006]) dark:(border-b border-[#ffffff07]) shadow-[--elevated-shadow];
+}
+
+.link {
+  @apply underline-offset-2 transition-[color];
+}
+
+.link.primary {
+  @apply text-primary media-mouse:hover:(text-primary-hover underline-2) media-touch:active:(text-primary-hover underline-2) focus-visible:(outline-color-secondary);
 }
 
 .loader {
