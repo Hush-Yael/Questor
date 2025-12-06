@@ -19,5 +19,12 @@ export const getUserByName = async (username: string) => {
 };
 
 export const createUser = async (data: typeof tables.users.$inferInsert) => {
-  return await db.insert(tables.users).values(data).returning().get();
+  const atLeastOne = await db.select().from(tables.users).get();
+  const firstUser = !atLeastOne;
+
+  return await db
+    .insert(tables.users)
+    .values({ ...data, role: firstUser ? "teacher" : "student" })
+    .returning()
+    .get();
 };

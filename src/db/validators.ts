@@ -1,6 +1,7 @@
 import * as z from "zod";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import * as tables from "./schema";
+import * as constants from "./constants";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 const customErrors = {
   invalidValue: (issue: z.core.$ZodRawIssue) =>
@@ -28,6 +29,11 @@ export const tableSchemas = {
           customErrors.minValue(import.meta.env.PROD ? 8 : 3)
         )
         .max(255, customErrors.maxValue(255)),
+      role: z
+        .enum(constants.userRoles, {
+          error: customErrors.invalidValue,
+        })
+        .default("student"),
     }).omit({ id: true }),
   },
 } as const;

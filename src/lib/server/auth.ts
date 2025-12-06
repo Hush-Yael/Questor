@@ -6,7 +6,7 @@ import { tableSchemas } from "~/db/validators";
 import { getUserById, getUserByName, createUser } from "~/lib/db/users";
 
 export const loginFn = createServerFn({ method: "POST" })
-  .inputValidator(tableSchemas.users.select)
+  .inputValidator(tableSchemas.users.select.omit({ role: true }))
   .handler(async ({ data }) => {
     const { data: user, error } = await authenticateUser({
       data: { username: data.username, password: data.password, login: true },
