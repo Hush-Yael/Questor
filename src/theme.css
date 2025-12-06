@@ -119,7 +119,7 @@
   --highlight-text: var(--base-text);
 
   --danger: hsl(359, 100%, 70%);
-  --danger-text: hsl(223.8136 0.0004% 98.0256%);
+  --danger-text: hsl(359, 100%, 13.92%);
 
   --info: hsl(210, 100%, 70%);
   --info-text: hsl(224, 100%, 4%);
