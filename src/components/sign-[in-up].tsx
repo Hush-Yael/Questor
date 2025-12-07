@@ -119,7 +119,6 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
           <form
             class="col gap-3"
             method="post"
-            novalidate
             // @ts-expect-error: previene que se recargue el sitio antes de la hidratación
             onsubmit="event.preventDefault()"
             onSubmit={(e) => {
