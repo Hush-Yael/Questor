@@ -190,6 +190,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
                         onBlur={f().handleBlur}
                       />
                       <button
+                        type="button"
                         onClick={[setPassVisible, !passVisible()]}
                         aria-label={
                           passVisible() ? "Ocultar" : "Mostrar" + " contraseña"
