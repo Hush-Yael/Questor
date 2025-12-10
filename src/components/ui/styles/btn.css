@@ -76,3 +76,7 @@
 .btn.icon.lg {
   @apply text-[1.75rem] p-5;
 }
+
+.btn.icon.xl {
+  @apply text-[2.5rem] p-6;
+}
