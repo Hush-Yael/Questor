@@ -21,6 +21,7 @@
     "@tanstack/solid-query-devtools": "^5.91.1",
     "@tanstack/solid-router": "^1.139.14",
     "@tanstack/solid-router-devtools": "^1.139.14",
+    "@tanstack/solid-router-ssr-query": "^1.140.0",
     "@tanstack/solid-start": "^1.139.14",
     "bcrypt": "^6.0.0",
     "drizzle-orm": "^0.44.7",

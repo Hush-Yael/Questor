@@ -16,6 +16,7 @@ import indexCss from "~/index.css?url";
 import themeCss from "~/theme.css?url";
 import compStylesCss from "~/components/ui/styles/index.css?url";
 import Header from "~/components/header";
+import { QueryClient } from "@tanstack/solid-query";
 
 if (import.meta.env.DEV && !("sleep" in Promise))
   Object.defineProperty(Promise, "sleep", {
@@ -29,7 +30,9 @@ declare global {
   }
 }
 
-export const Route = createRootRouteWithContext()({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       { title: "Questor" },
