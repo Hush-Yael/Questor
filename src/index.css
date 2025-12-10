@@ -36,7 +36,8 @@ svg:not([fill=none]) {
   fill: currentColor;
 }
 
-svg[stroke-width]:not([stroke=none]) {
+svg[stroke-width]:not([stroke=none]),
+path[stroke-width]:not([stroke=none]) {
   stroke: currentColor;
 }
 
