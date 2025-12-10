@@ -5,18 +5,25 @@
   font-style: normal;
 }
 
+:root,
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 :root {
+  min-height: 100%;
   min-width: 320px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "AR One Sans", sans-serif !important;
+
+  --header-height: 50px;
 }
 
-:root,
 body {
-  height: 100%;
-  width: 100%;
+  flex-grow: 1;
 }
 
 .light {
