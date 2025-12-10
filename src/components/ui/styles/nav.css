@@ -1,0 +1,61 @@
+#nav-icon span {
+  display: block;
+  position: absolute;
+  height: 10%;
+  width: 100%;
+  background: currentColor;
+  border-radius: 20px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition-property: transform, top, width, left;
+  transition-duration: .25s;
+  transition-timing-function: ease-in-out;
+}
+
+#nav-icon span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon span:nth-child(2),
+#nav-icon span:nth-child(3) {
+  top: 40%;
+}
+
+#nav-icon span:nth-child(4) {
+  top: 80%;
+}
+
+#nav-icon[aria-expanded="true"] span:nth-child(1) {
+  top: 40%;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon[aria-expanded="true"] span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+#nav-icon[aria-expanded="true"] span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+#nav-icon[aria-expanded="true"] span:nth-child(4) {
+  top: 40%;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-menu[aria-hidden=true] {
+  transform: translateY(calc(var(--header-height) * -1));
+}
+
+#nav-menu[aria-hidden=false] {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nav-link[data-status=active]>svg.outlined,
+.nav-link:not([data-status=active])>svg.solid {
+  display: none;
+}
