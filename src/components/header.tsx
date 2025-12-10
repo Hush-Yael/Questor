@@ -60,7 +60,7 @@ const excludedPathnames: [...LinkOptions["to"][]] = [
 
 export default function Nav() {
   const location = useLocation();
-  const [open, setOpen] = createSignal(true);
+  const [open, setOpen] = createSignal(false);
 
   return (
     <Show
@@ -70,7 +70,8 @@ export default function Nav() {
     >
       <div
         data-visible={open()}
-        class="z-10 fixed inset-0 bg-#0004 dark:bg-#0008 keyframes-fade-in keyframes-fade-out data-[visible=false]:animate-[fade-out_200ms_forwards] data-[visible=true]:animate-[fade-in_200ms_forwards]"
+        aria-hidden="true"
+        class="z-10 fixed inset-0 bg-#0004 dark:bg-#0008 keyframes-fade-in keyframes-fade-out data-[visible=false]:(animate-[fade-out_200ms_forwards] pointer-events-none) data-[visible=true]:animate-[fade-in_200ms_forwards]"
         onClick={() => setOpen(false)}
       ></div>
 
