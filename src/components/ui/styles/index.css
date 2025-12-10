@@ -6,6 +6,10 @@
   @apply flex flex-col;
 }
 
+.fc {
+  @apply flex items-center justify-center;
+}
+
 .box {
   @apply bg-elevated rounded-box light:(border-t border-[#00000006]) dark:(border-b border-[#ffffff07]) shadow-[--elevated-shadow];
 }
