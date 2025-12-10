@@ -67,10 +67,10 @@
 
   /* statuses */
   --danger: hsl(357, 100%, 45%);
-  --danger-text: hsl(0, 0%, 100%);
+  --danger-text: #fff;
 
   --info: hsl(210, 100%, 50%);
-  --info-text: hsl(224, 100%, 4%);
+  --info-text: #fff;
 
   --success: hsl(152, 100%, 50%);
   --success-text: hsl(139, 100%, 4%);
