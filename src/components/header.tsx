@@ -1,11 +1,12 @@
 import "./ui/styles/nav.css";
 import { Link, useLocation, type LinkOptions } from "@tanstack/solid-router";
 import Icons from "./ui/icons";
-import { For, type JSX, Show } from "solid-js";
+import { For, type JSX, onCleanup, onMount, Show } from "solid-js";
 import Logo from "./logo";
 import { createSignal } from "solid-js";
 import ThemeSelector from "~/components/theme-selector";
 import type { IconProps } from "solid-icons";
+import { throttle } from "~/lib/utils";
 
 const links: {
   path: LinkOptions["to"];
@@ -58,14 +59,48 @@ const excludedPathnames: [...LinkOptions["to"][]] = [
   "/auth/signup",
 ];
 
-export default function Nav() {
+
+export default function Header() {
   const location = useLocation();
+  const isNotExcluded = () => !excludedPathnames.includes(location().pathname as LinkOptions["to"])
+
   const [open, setOpen] = createSignal(false);
+  const [scrollDirection, setScrollDirection] = createSignal<null | 'up' | 'down'>(null);
+  
+  if (isNotExcluded() && typeof window !== 'undefined') {
+    let  scrollPending = false,lastScrollY= window.pageYOffset;
+
+    const updateScrollDirection = throttle(() => {
+      if (!scrollPending) {
+        scrollPending = true;
+
+        requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset;
+          const direction = scrollY > lastScrollY ? "down" : "up";
+          if (direction !== scrollDirection() && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) 
+            setScrollDirection(direction);
+          
+          lastScrollY = scrollY > 0 ? scrollY : 0;
+          scrollPending = false;
+        })
+      }
+    }, 200);
+
+    onMount(() => {
+      window.addEventListener("scroll", updateScrollDirection, {
+        passive: true
+      });
+    });
+
+    onCleanup(() => {
+      window.removeEventListener("scroll", updateScrollDirection)
+    })
+  }
 
   return (
     <Show
       when={
-        !excludedPathnames.includes(location().pathname as LinkOptions["to"])
+        isNotExcluded()
       }
     >
       <div
@@ -75,7 +110,12 @@ export default function Nav() {
         onClick={() => setOpen(false)}
       ></div>
 
-      <header class="sticky z-20 top-0 flex items-center justify-between gap-y-4 bg-primary text-primary-text h-[--header-height] px-5 pl-3">
+      <header
+        class="peer/header sticky top-0 z-20 flex items-center justify-between gap-y-4 bg-primary text-primary-text h-[--header-height] px-5 pl-3 data-[hidden=true]:-transform-translate-y-[--header-height] duration-500 ease-in-out"
+        data-hidden={scrollDirection() === 'down'} style={{
+          "transition-property": 'translate'
+        }}
+      >
         <Link to="/">
           <Logo class="w-25" />
         </Link>
@@ -100,7 +140,7 @@ export default function Nav() {
 
         <div
           role="menu"
-          class="absolute z-19 top-full left-0 right-0 bg-base rounded-b-3xl py-2.5 supports-[not(corner-shape:_squircle)]:rounded-b-xl text-base-text aria-hidden:(pointer-events-none opacity-0) transition-[opacity,transform]"
+          class="absolute z-19 top-full left-0 right-0 bg-base rounded-b-3xl py-2.5 supports-[not(corner-shape:_squircle)]:rounded-b-xl text-base-text aria-hidden:(pointer-events-none opacity-0) transition-[opacity,transform] duration-250 ease-in-out"
           aria-hidden={!open()}
           style={{
             // @ts-expect-error: sí existe
