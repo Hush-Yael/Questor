@@ -4,7 +4,7 @@ import Icons from "./ui/icons";
 import { For, type JSX, Show } from "solid-js";
 import Logo from "./logo";
 import { createSignal } from "solid-js";
-import ThemeSelector from "~/components/theme-select";
+import ThemeSelector from "~/components/theme-selector";
 import type { IconProps } from "solid-icons";
 
 const links: {

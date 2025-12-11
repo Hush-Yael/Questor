@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/solid-router";
-import ThemeSelect from "./theme-select";
+import ThemeSelect from "./theme-selector";
 import { createForm } from "@tanstack/solid-form";
 import * as tables from "~/db/schema";
 import * as tableSchemas from "~/db/validators";
