@@ -2,7 +2,7 @@ import { fakerES as f } from "@faker-js/faker";
 import { eq } from "drizzle-orm";
 import db from "~/db";
 import * as tables from "~/db/schema";
-import { type ExamStateCode, examStatesEnum } from "~/db/constants";
+import { type ExamStateCode, examStates } from "~/db/constants";
 
 const subjectsNames = [
   "Cálculo Diferencial e Integral",
@@ -28,10 +28,10 @@ export const getFirstTeacherId = async () => {
 };
 
 const states: { value: ExamStateCode; weight: number }[] = [
-  { value: examStatesEnum["PENDING"], weight: 0.85 },
-  { value: examStatesEnum["FINISHED"], weight: 0.1 },
-  { value: examStatesEnum["UNAVAILABLE"], weight: 0.05 },
-  { value: examStatesEnum["DRAFT"], weight: 0.05 },
+  { value: examStates.enum["PENDING"], weight: 0.85 },
+  { value: examStates.enum["FINISHED"], weight: 0.1 },
+  { value: examStates.enum["UNAVAILABLE"], weight: 0.05 },
+  { value: examStates.enum["DRAFT"], weight: 0.05 },
 ];
 
 const fakeExam = (
