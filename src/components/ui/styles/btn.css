@@ -29,20 +29,20 @@
 
 .btn.primary,
 .btn.icon.primary {
-  @apply bg-primary text-primary-text focus-visible:outline-secondary media-mouse:not-disabled:hover:bg-primary-hover media-touch:not-active:active:bg-primary-hover;
+  @apply bg-primary text-primary-text focus-visible:outline-secondary media-mouse:not-disabled:hover:bg-primary-hover media-touch:not-disabled:active:bg-primary-hover;
 }
 
 .btn.secondary {
-  @apply media-mouse:not-disabled:hover:bg-red-500 media-touch:not-active:active:bg-red-500;
+  @apply media-mouse:not-disabled:hover:bg-red-500 media-touch:not-disabled:active:bg-red-500;
 }
 
 .btn.secondary,
 .btn.icon.secondary {
-  @apply bg-secondary text-secondary-text focus-visible:outline-primary media-mouse:not-disabled:hover:bg-secondary-hover media-touch:not-active:active:bg-secondary-hover;
+  @apply bg-secondary text-secondary-text focus-visible:outline-primary media-mouse:not-disabled:hover:bg-secondary-hover media-touch:not-disabled:active:bg-secondary-hover;
 }
 
 .btn.ghost {
-  @apply media-mouse:not-disabled:hover:bg-highlight media-touch:not-active:active:bg-highlight focus-visible:bg-highlight text-highlight-text focus-visible:outline-highlight-text;
+  @apply media-mouse:not-disabled:hover:bg-highlight media-touch:not-disabled:active:bg-highlight focus-visible:bg-highlight text-highlight-text focus-visible:outline-highlight-text;
 }
 
 .btn.xs {
