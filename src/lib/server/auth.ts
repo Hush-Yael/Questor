@@ -2,11 +2,11 @@ import { createServerFn } from "@tanstack/solid-start";
 import { redirect } from "@tanstack/solid-router";
 import { useAppSession } from "~/hooks/useSession";
 import bcrypt from "bcrypt";
-import { tableSchemas } from "~/db/validators";
+import * as tableSchemas from "~/db/validators";
 import { getUserById, getUserByName, createUser } from "~/lib/db/users";
 
 export const loginFn = createServerFn({ method: "POST" })
-  .inputValidator(tableSchemas.users.select.omit({ role: true }))
+  .inputValidator(tableSchemas.users.select.omit({ id: true, role: true }))
   .handler(async ({ data }) => {
     const { data: user, error } = await authenticateUser({
       data: { username: data.username, password: data.password, login: true },

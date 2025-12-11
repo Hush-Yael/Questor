@@ -2,7 +2,7 @@ import { Link } from "@tanstack/solid-router";
 import ThemeSelect from "./theme-select";
 import { createForm } from "@tanstack/solid-form";
 import * as tables from "~/db/schema";
-import { tableSchemas } from "~/db/validators";
+import * as tableSchemas from "~/db/validators";
 import { authenticateUser, loginFn, registerFn } from "~/lib/server/auth";
 import { createMemo, createSignal } from "solid-js";
 import { TextField } from "@kobalte/core/text-field";
