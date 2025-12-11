@@ -61,7 +61,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
   }));
 
   return (
-    <div class="col justify-between h-full overflow-x-hidden">
+    <div class="col justify-between flex-1 overflow-x-hidden">
       <div class="sticky top-0 flex items-center justify-center w-full max-w-700px h-60px mxa text-primary-text sm:h-80px">
         <div class="absolute top-0 left-0 z-0 w-full lh-0 h-inherit">
           <svg
