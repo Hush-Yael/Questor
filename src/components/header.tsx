@@ -1,7 +1,7 @@
 import "./ui/styles/nav.css";
 import { Link, useLocation, type LinkOptions } from "@tanstack/solid-router";
 import Icons from "./ui/icons";
-import { For, type JSX, onCleanup, onMount, Show } from "solid-js";
+import { createEffect, For, type JSX, Show } from "solid-js";
 import Logo from "./logo";
 import { createSignal } from "solid-js";
 import ThemeSelector from "~/components/theme-selector";
@@ -66,36 +66,33 @@ export default function Header() {
 
   const [open, setOpen] = createSignal(false);
   const [scrollDirection, setScrollDirection] = createSignal<null | 'up' | 'down'>(null);
-  
-  if (isNotExcluded() && typeof window !== 'undefined') {
-    let  scrollPending = false,lastScrollY= window.pageYOffset;
+  let scrollPending = false,
+    lastScrollY =typeof window !== 'undefined' ? window.pageYOffset : 0;
 
-    const updateScrollDirection = throttle(() => {
-      if (!scrollPending) {
-        scrollPending = true;
+  const updateScrollDirection = throttle(() => {
+    if (!scrollPending) {
+      scrollPending = true;
 
-        requestAnimationFrame(() => {
-          const scrollY = window.pageYOffset;
-          const direction = scrollY > lastScrollY ? "down" : "up";
-          if (direction !== scrollDirection() && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) 
-            setScrollDirection(direction);
-          
-          lastScrollY = scrollY > 0 ? scrollY : 0;
-          scrollPending = false;
-        })
-      }
-    }, 200);
+      requestAnimationFrame(() => {
+        const scrollY = window.pageYOffset;
+        const direction = scrollY > lastScrollY ? "down" : "up";
+        if (direction !== scrollDirection() && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) 
+          setScrollDirection(direction);
+        
+        lastScrollY = scrollY > 0 ? scrollY : 0;
+        scrollPending = false;
+      })
+    }
+  }, 200);
 
-    onMount(() => {
-      window.addEventListener("scroll", updateScrollDirection, {
+  createEffect(() => {
+    if (isNotExcluded()) 
+      typeof window !== 'undefined' && window.addEventListener("scroll", updateScrollDirection, {
         passive: true
       });
-    });
-
-    onCleanup(() => {
-      window.removeEventListener("scroll", updateScrollDirection)
-    })
-  }
+    
+    return () => typeof window !== 'undefined' && window.removeEventListener("scroll", updateScrollDirection)
+  });
 
   return (
     <Show
