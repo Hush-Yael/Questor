@@ -32,6 +32,12 @@ const theme: Theme = {
       DEFAULT: "var(--muted)",
       text: "var(--muted-text)",
     },
+    "translucent-1": {
+      DEFAULT: "var(--translucent-1)",
+    },
+    "translucent-2": {
+      DEFAULT: "var(--translucent-2)",
+    },
     danger: {
       DEFAULT: "var(--danger)",
       text: "var(--danger-text)",

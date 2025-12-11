@@ -65,6 +65,9 @@
   --highlight: hsl(39.3103 64.4444% 91.1765%);
   --highlight-text: var(--warm-black);
 
+  --translucent-1: #0001;
+  --translucent-2: #0002;
+
   /* statuses */
   --danger: hsl(357, 100%, 45%);
   --danger-text: #fff;
@@ -118,6 +121,10 @@
   --highlight: hsl(30.0000 6.0000% 19.6078%);
   --highlight-text: var(--base-text);
 
+  --translucent-1: #fff1;
+  --translucent-2: #fff2;
+
+  /* statuses */
   --danger: hsl(359, 100%, 70%);
   --danger-text: hsl(359, 100%, 13.92%);
 
