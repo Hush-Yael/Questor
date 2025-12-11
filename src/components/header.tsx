@@ -28,7 +28,7 @@ const links: {
       outline: Icons.nav.outline.subjects,
       solid: Icons.nav.solid.subjects,
     },
-    label: "Cursos",
+    label: "Asignaturas",
     name: "subjects",
   },
   {
@@ -109,11 +109,16 @@ export default function Nav() {
           id="nav-menu"
         >
           <ThemeSelector
-            label="Tema del sitio"
-            class="flex justify-between items-center w-full px-4"
+            label={(
+              <span class="flex items-center gap-x-2 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-muted-text size-4.5" width="24" height="24" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
+                Tema del sitio
+              </span>
+            )}
+            class="flex justify-between items-end w-full px-6"
           />
 
-          <hr class="my-3 border-muted" />
+          <hr class="my-4  mx-6 border-translucent-2" />
 
           <nav>
             <ul
