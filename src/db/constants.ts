@@ -1,62 +1,44 @@
 export const userRoles = ["student", "teacher"] as const;
 
-export const examStatesEnum = {
-  PENDING: "0",
-  FINISHED: "1",
-  UNAVAILABLE: "2",
-  DRAFT: "3",
-} as const;
+class WithEnum<Code extends string, CodeName extends string> {
+  enum: Record<CodeName, Code>;
+  codes: Code[];
+  labels: Record<Code, CodeName>;
 
-export type ExamStateCode =
-  (typeof examStatesEnum)[keyof typeof examStatesEnum];
+  constructor(data: { code: Code; label: string; codeName: CodeName }[]) {
+    const _enum = Object.fromEntries(
+      data.map(({ code, codeName }) => [codeName, code])
+    );
+    this.enum = _enum as Record<CodeName, Code>;
 
-export const examStatesCodes = Object.values(examStatesEnum) as [
-  string,
-  ...ExamStateCode[],
-];
+    this.codes = Object.values(_enum);
+    this.labels = Object.fromEntries(
+      data.map(({ code, label }) => [code, label])
+    ) as Record<Code, CodeName>;
+  }
+}
 
-export const examStatesLabels = {
-  [examStatesEnum.PENDING]: "Pendiente",
-  [examStatesEnum.FINISHED]: "Finalizado",
-  [examStatesEnum.UNAVAILABLE]: "No disponible",
-  [examStatesEnum.DRAFT]: "Borrador",
-} as const;
+export const examStates = new WithEnum([
+  { codeName: "PENDING", code: "0", label: "Pendiente" },
+  { codeName: "FINISHED", code: "1", label: "Finalizado" },
+  { codeName: "UNAVAILABLE", code: "2", label: "No disponible" },
+  { codeName: "DRAFT", code: "3", label: "Borrador" },
+]);
 
-export const examAttemptEnum = {
-  IN_PROGRESS: "0",
-  FINISHED: "1",
-} as const;
+export type ExamStateCode = (typeof examStates.codes)[number];
 
-export type ExamAttemptCode =
-  (typeof examAttemptEnum)[keyof typeof examAttemptEnum];
+export const examAttemptStates = new WithEnum([
+  { codeName: "IN_PROGRESS", code: "0", label: "En progreso" },
+  { codeName: "FINISHED", code: "1", label: "Finalizado" },
+]);
 
-export const examAttemptCodes = Object.values(examAttemptEnum) as [
-  string,
-  ...ExamAttemptCode[],
-];
+export type ExamAttemptCode = (typeof examAttemptStates.codes)[number];
 
-export const examAttemptLabels = {
-  [examAttemptEnum.IN_PROGRESS]: "En progreso",
-  [examAttemptEnum.FINISHED]: "Finalizado",
-} as const;
+export const questionTypes = new WithEnum([
+  { codeName: "SELECT", code: "0", label: "Elección" },
+  { codeName: "MULTI_SELECT", code: "1", label: "Elección múltiple" },
+  { codeName: "TRUE_FALSE", code: "2", label: "Verdadero/Falso" },
+  { codeName: "ANSWER", code: "3", label: "Respuesta" },
+]);
 
-export const questionsEnum = {
-  SELECT: "0",
-  MULTI_SELECT: "1",
-  TRUE_FALSE: "2",
-  ANSWER: "3",
-} as const;
-
-export type QuestionCode = (typeof questionsEnum)[keyof typeof questionsEnum];
-
-export const questionsCodes = Object.values(questionsEnum) as [
-  string,
-  ...QuestionCode[],
-];
-
-export const questionLabels = {
-  [questionsEnum.SELECT]: "Elección",
-  [questionsEnum.MULTI_SELECT]: "Elección múltiple",
-  [questionsEnum.TRUE_FALSE]: "Verdadero/Falso",
-  [questionsEnum.ANSWER]: "Respuesta",
-} as const;
+export type QuestionCode = (typeof questionTypes.codes)[number];

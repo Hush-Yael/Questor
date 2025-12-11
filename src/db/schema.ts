@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import { int, numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import * as constants from "./constants";
+import type { QuestionCode, ExamStateCode, ExamAttemptCode } from "./constants";
 
 export const users = sqliteTable("users", {
   id: int().primaryKey({ autoIncrement: true }),
@@ -36,7 +37,9 @@ export const exams = sqliteTable("exams", {
     .default(sql`(unixepoch('subsecond') * 1000)`),
   startsAt: int({ mode: "timestamp_ms" }),
   endsAt: int({ mode: "timestamp_ms" }),
-  state: text({ enum: constants.examStatesCodes }).notNull(),
+  state: text({
+    enum: constants.examStates.codes as [ExamStateCode, ...ExamStateCode[]],
+  }).notNull(),
   duration: int(),
   maxAttempts: int().notNull().default(1),
   score: numeric({ mode: "number" }).notNull(),
@@ -48,7 +51,7 @@ export const questions = sqliteTable("questions", {
     .notNull()
     .references(() => exams.id, { onDelete: "cascade" }),
   type: text({
-    enum: constants.questionsCodes,
+    enum: constants.questionTypes.codes as [QuestionCode, ...QuestionCode[]],
   }).notNull(),
   booleanAnswer: int({ mode: "boolean" }),
   prompt: text().notNull(),
@@ -98,5 +101,10 @@ export const studentAttempts = sqliteTable("student_attempts", {
     .default(sql`(unixepoch('subsecond') * 1000)`),
   finishedAt: int({ mode: "timestamp_ms" }),
   score: numeric({ mode: "number" }).notNull(),
-  state: text({ enum: constants.examAttemptCodes }).notNull(),
+  state: text({
+    enum: constants.examAttemptStates.codes as [
+      ExamAttemptCode,
+      ...ExamStateCode[],
+    ],
+  }).notNull(),
 });

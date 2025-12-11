@@ -70,7 +70,7 @@ export const exams = {
     teacherId: common.minInt1,
     name: common.strMinMax(3, 128),
     description: common.strMinMax(1, 255).optional(),
-    state: z.enum(constants.examStatesCodes, {
+    state: z.enum(constants.examStates.codes, {
       error: customErrors.invalidValue,
     }),
     createdAt: common.optionalMinInt1,
@@ -87,7 +87,7 @@ export const questions = {
   select: createSelectSchema(tables.questions),
   insert: createInsertSchema(tables.questions, {
     examId: common.minInt1,
-    type: z.enum(constants.questionsCodes, {
+    type: z.enum(constants.questionTypes.codes, {
       error: customErrors.invalidValue,
     }),
     booleanAnswer: z.boolean({ error: customErrors.invalidValue }).optional(),
@@ -125,7 +125,7 @@ export const studentAttempts = {
     startedAt: common.minInt1,
     finishedAt: common.optionalMinInt1,
     score: common.minNum1.max(100, customErrors.maxValue(100)),
-    state: z.enum(constants.examStatesCodes, {
+    state: z.enum(constants.examAttemptStates.codes, {
       error: customErrors.invalidValue,
     }),
   }).omit({ id: true }),
