@@ -32,7 +32,7 @@ type DrawerProps<T extends JSX.Element | undefined> = Omit<
       });
 
 export const Close = (
-  props: CloseProps & { class?: string; children?: JSX.Element }
+  props: CloseProps & JSX.IntrinsicElements['button']
 ) => (
   <DWClose
     {...props}
