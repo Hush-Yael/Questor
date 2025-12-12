@@ -77,7 +77,7 @@ export const exams = {
     updatedAt: common.optionalMinInt1,
     startsAt: common.optionalMinInt1,
     endsAt: common.optionalMinInt1,
-    duration: common.minInt1.max(1440, customErrors.maxValue(1440)).optional(),
+    durationSeconds: common.minInt1.max(1440, customErrors.maxValue(1440)).optional(),
     maxAttempts: common.optionalMinInt1,
     score: common.minNum1.max(100, customErrors.maxValue(100)),
   }).omit({ id: true }),

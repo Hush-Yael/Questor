@@ -40,7 +40,7 @@ export const exams = sqliteTable("exams", {
   state: text({
     enum: constants.examStates.codes as [ExamStateCode, ...ExamStateCode[]],
   }).notNull(),
-  duration: int(),
+  durationSeconds: int(),
   maxAttempts: int().notNull().default(1),
   score: numeric({ mode: "number" }).notNull(),
 });

@@ -48,10 +48,10 @@ const fakeExam = (
       max: 12,
     }),
     description: f.lorem.sentences({ min: 1, max: 4 }),
-    duration: f.datatype.boolean()
+    durationSeconds: f.datatype.boolean()
       ? f.number.int({
-          min: 60000,
-          max: 3600 * 1000,
+          min: 60,
+          max: 60 * 60 * 24,
         })
       : null,
     state: f.helpers.weightedArrayElement(states),
