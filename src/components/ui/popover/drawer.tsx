@@ -34,8 +34,10 @@ type DrawerProps<T extends JSX.Element | undefined> = Omit<
 export const Close = (
   props: CloseProps & JSX.IntrinsicElements['button']
 ) => (
+  // @ts-expect-error: se evita que se genere un valor para el aria-label automáticamente
   <DWClose
     {...props}
+    aria-label={props["aria-label"] || null}
     class={`btn btn-primary w-full max-w-400px ma ${props.class || ""}`}
   >
     {props.children}
