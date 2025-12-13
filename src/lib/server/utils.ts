@@ -9,9 +9,15 @@ export const getCookie = createServerFn({ method: "GET" })
   .handler(async ({ data: name }) => {
     return getCookieFn(name);
   });
-
 export const setCookie = createServerFn({ method: "POST" })
-  .inputValidator((data: { name: string; value: string }) => data)
-  .handler(async ({ data: { name, value } }) => {
-    return setCookieFn(name, value);
+  .inputValidator(
+    // @ts-expect-error: el tipo de las opts es correcto
+    (data: {
+      name: string;
+      value: string;
+      opts?: Parameters<typeof setCookieFn>["2"];
+    }) => data
+  )
+  .handler(async ({ data: { name, value, opts } }) => {
+    return setCookieFn(name, value, opts || { maxAge: 60 * 60 * 24 * 7 });
   });
