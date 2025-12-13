@@ -59,3 +59,23 @@ path[stroke-width]:not([stroke=none]) {
   background-color: var(--secondary);
   color: var(--secondary-text);
 }
+
+input {
+  min-width: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: currentColor;
+}
+
+.dialog-overlay {
+  --ov-bg: #0003;
+}
+
+.dark .dialog-overlay {
+  --ov-bg: #0008;
+}
