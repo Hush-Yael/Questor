@@ -32,7 +32,7 @@
   /* shadows */
   --elevated-shadow: inset 0 1px 2px #ffffff30,
     /* top highlight */
-    0 1px 2px #00000030,
+    0 1px 2px #00000010,
     /* dark shadow */
     0 2px 4px #00000015;
 
@@ -67,6 +67,7 @@
 
   --translucent-1: #0001;
   --translucent-2: #0002;
+  --translucent-3: #0003;
 
   /* statuses */
   --danger: hsl(357, 100%, 45%);
@@ -83,7 +84,7 @@
 
   /* borders */
   --border: hsl(50.0000 21.4286% 89.0196%);
-  --input: hsl(50.0000 21.4286% 89.0196%);
+  --input: hsl(54, 9%, 79%);
   --ring: hsl(50.0000 3.0000% 60.7843%);
 }
 
@@ -94,6 +95,12 @@
   --elevated-background: var(--warm-black);
 
   /* shadows */
+  --elevated-shadow: inset 0 1px 2px #ffffff30,
+    /* top highlight */
+    0 1px 2px #00000030,
+    /* dark shadow */
+    0 2px 4px #00000015;
+
   --btn-shadow: inset 0 1px 2px #ffffff50,
     /* top highlight */
     0 2px 4px #00000030,
@@ -123,6 +130,7 @@
 
   --translucent-1: #fff1;
   --translucent-2: #fff2;
+  --translucent-3: #fff3;
 
   /* statuses */
   --danger: hsl(359, 100%, 70%);
