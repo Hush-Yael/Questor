@@ -31,14 +31,12 @@ type DrawerProps<T extends JSX.Element | undefined> = Omit<
         trigger: (props: TriggerProps) => JSX.Element;
       });
 
-export const Close = (
-  props: CloseProps & JSX.IntrinsicElements['button']
-) => (
+export const Close = (props: CloseProps & JSX.IntrinsicElements["button"]) => (
   // @ts-expect-error: se evita que se genere un valor para el aria-label automáticamente
   <DWClose
     {...props}
     aria-label={props["aria-label"] || null}
-    class={`btn btn-primary w-full max-w-400px ma ${props.class || ""}`}
+    class={`btn btn-primary w-full ${props.class || ""}`}
   >
     {props.children}
   </DWClose>
@@ -74,7 +72,7 @@ export const Content = (
       }}
     >
       <div
-        class="m-a rounded-full bg-muted"
+        class="m-a rounded-full bg-translucent-2"
         classList={{
           "w-15 h-1.25":
             props.side === "top" || props.side === "bottom" || !props.side,
@@ -88,7 +86,7 @@ export const Content = (
       <div class={`col ${props.wrapperClass || ""}`}>
         <div class="col gap-4 empty:hidden">
           {props.label && (
-            <Label class="text-(xl center balance) font-bold">
+            <Label class="text-(lg balance center) font-600 border-b border-translucent-2 pb-3">
               {props.label}
             </Label>
           )}
