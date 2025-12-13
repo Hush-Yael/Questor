@@ -22,6 +22,10 @@
   @apply text-primary media-mouse:hover:(text-primary-hover underline-2) media-touch:active:(text-primary-hover underline-2) focus-visible:(outline-color-secondary);
 }
 
+.badge {
+  @apply p-1 px-3 rounded-full font-500 text-xs
+}
+
 .loader {
   width: 45px;
   aspect-ratio: 1;

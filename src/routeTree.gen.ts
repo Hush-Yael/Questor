@@ -13,6 +13,10 @@ import { Route as _authedRouteImport } from './routes/__authed'
 import { Route as _authedIndexRouteImport } from './routes/__authed/index'
 import { Route as AuthSignupRouteImport } from './routes/auth/signup'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as _authedUsersIndexRouteImport } from './routes/__authed/users/index'
+import { Route as _authedSubjectsIndexRouteImport } from './routes/__authed/subjects/index'
+import { Route as _authedExamsIndexRouteImport } from './routes/__authed/exams/index'
+import { Route as _authedExamsNewRouteImport } from './routes/__authed/exams/new'
 
 const _authedRoute = _authedRouteImport.update({
   id: '/__authed',
@@ -33,16 +37,44 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const _authedUsersIndexRoute = _authedUsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => _authedRoute,
+} as any)
+const _authedSubjectsIndexRoute = _authedSubjectsIndexRouteImport.update({
+  id: '/subjects/',
+  path: '/subjects/',
+  getParentRoute: () => _authedRoute,
+} as any)
+const _authedExamsIndexRoute = _authedExamsIndexRouteImport.update({
+  id: '/exams/',
+  path: '/exams/',
+  getParentRoute: () => _authedRoute,
+} as any)
+const _authedExamsNewRoute = _authedExamsNewRouteImport.update({
+  id: '/exams/new',
+  path: '/exams/new',
+  getParentRoute: () => _authedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
   '/': typeof _authedIndexRoute
+  '/exams/new': typeof _authedExamsNewRoute
+  '/exams': typeof _authedExamsIndexRoute
+  '/subjects': typeof _authedSubjectsIndexRoute
+  '/users': typeof _authedUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
   '/': typeof _authedIndexRoute
+  '/exams/new': typeof _authedExamsNewRoute
+  '/exams': typeof _authedExamsIndexRoute
+  '/subjects': typeof _authedSubjectsIndexRoute
+  '/users': typeof _authedUsersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,13 +82,40 @@ export interface FileRoutesById {
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
   '/__authed/': typeof _authedIndexRoute
+  '/__authed/exams/new': typeof _authedExamsNewRoute
+  '/__authed/exams/': typeof _authedExamsIndexRoute
+  '/__authed/subjects/': typeof _authedSubjectsIndexRoute
+  '/__authed/users/': typeof _authedUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/auth/login' | '/auth/signup' | '/'
+  fullPaths:
+    | '/auth/login'
+    | '/auth/signup'
+    | '/'
+    | '/exams/new'
+    | '/exams'
+    | '/subjects'
+    | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/auth/login' | '/auth/signup' | '/'
-  id: '__root__' | '/__authed' | '/auth/login' | '/auth/signup' | '/__authed/'
+  to:
+    | '/auth/login'
+    | '/auth/signup'
+    | '/'
+    | '/exams/new'
+    | '/exams'
+    | '/subjects'
+    | '/users'
+  id:
+    | '__root__'
+    | '/__authed'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/__authed/'
+    | '/__authed/exams/new'
+    | '/__authed/exams/'
+    | '/__authed/subjects/'
+    | '/__authed/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,15 +154,51 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/__authed/users/': {
+      id: '/__authed/users/'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof _authedUsersIndexRouteImport
+      parentRoute: typeof _authedRoute
+    }
+    '/__authed/subjects/': {
+      id: '/__authed/subjects/'
+      path: '/subjects'
+      fullPath: '/subjects'
+      preLoaderRoute: typeof _authedSubjectsIndexRouteImport
+      parentRoute: typeof _authedRoute
+    }
+    '/__authed/exams/': {
+      id: '/__authed/exams/'
+      path: '/exams'
+      fullPath: '/exams'
+      preLoaderRoute: typeof _authedExamsIndexRouteImport
+      parentRoute: typeof _authedRoute
+    }
+    '/__authed/exams/new': {
+      id: '/__authed/exams/new'
+      path: '/exams/new'
+      fullPath: '/exams/new'
+      preLoaderRoute: typeof _authedExamsNewRouteImport
+      parentRoute: typeof _authedRoute
+    }
   }
 }
 
 interface _authedRouteChildren {
   _authedIndexRoute: typeof _authedIndexRoute
+  _authedExamsNewRoute: typeof _authedExamsNewRoute
+  _authedExamsIndexRoute: typeof _authedExamsIndexRoute
+  _authedSubjectsIndexRoute: typeof _authedSubjectsIndexRoute
+  _authedUsersIndexRoute: typeof _authedUsersIndexRoute
 }
 
 const _authedRouteChildren: _authedRouteChildren = {
   _authedIndexRoute: _authedIndexRoute,
+  _authedExamsNewRoute: _authedExamsNewRoute,
+  _authedExamsIndexRoute: _authedExamsIndexRoute,
+  _authedSubjectsIndexRoute: _authedSubjectsIndexRoute,
+  _authedUsersIndexRoute: _authedUsersIndexRoute,
 }
 
 const _authedRouteWithChildren =
