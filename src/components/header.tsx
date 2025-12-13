@@ -6,7 +6,7 @@ import Logo from "./logo";
 import { createSignal } from "solid-js";
 import ThemeSelector from "~/components/theme-selector";
 import type { IconProps } from "solid-icons";
-import { throttle } from "~/lib/utils";
+import { throttle } from "@tanstack/pacer";
 
 const links: {
   path: LinkOptions["to"];
@@ -59,47 +59,54 @@ const excludedPathnames: [...LinkOptions["to"][]] = [
   "/auth/signup",
 ];
 
-
 export default function Header() {
   const location = useLocation();
-  const isNotExcluded = () => !excludedPathnames.includes(location().pathname as LinkOptions["to"])
+  const isNotExcluded = () =>
+    !excludedPathnames.includes(location().pathname as LinkOptions["to"]);
 
   const [open, setOpen] = createSignal(false);
-  const [scrollDirection, setScrollDirection] = createSignal<null | 'up' | 'down'>(null);
+  const [scrollDirection, setScrollDirection] = createSignal<
+    null | "up" | "down"
+  >(null);
   let scrollPending = false,
-    lastScrollY =typeof window !== 'undefined' ? window.pageYOffset : 0;
+    lastScrollY = typeof window !== "undefined" ? window.pageYOffset : 0;
 
-  const updateScrollDirection = throttle(() => {
-    if (!scrollPending) {
-      scrollPending = true;
+  const updateScrollDirection = throttle(
+    () => {
+      if (!scrollPending) {
+        scrollPending = true;
 
-      requestAnimationFrame(() => {
-        const scrollY = window.pageYOffset;
-        const direction = scrollY > lastScrollY ? "down" : "up";
-        if (direction !== scrollDirection() && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) 
-          setScrollDirection(direction);
-        
-        lastScrollY = scrollY > 0 ? scrollY : 0;
-        scrollPending = false;
-      })
-    }
-  }, 200);
+        requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset;
+          const direction = scrollY > lastScrollY ? "down" : "up";
+          if (
+            direction !== scrollDirection() &&
+            (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
+          )
+            setScrollDirection(direction);
+
+          lastScrollY = scrollY > 0 ? scrollY : 0;
+          scrollPending = false;
+        });
+      }
+    },
+    { wait: 200 }
+  );
 
   createEffect(() => {
-    if (isNotExcluded()) 
-      typeof window !== 'undefined' && window.addEventListener("scroll", updateScrollDirection, {
-        passive: true
-      });
-    
-    return () => typeof window !== 'undefined' && window.removeEventListener("scroll", updateScrollDirection)
+    if (isNotExcluded())
+      typeof window !== "undefined" &&
+        window.addEventListener("scroll", updateScrollDirection, {
+          passive: true,
+        });
+
+    return () =>
+      typeof window !== "undefined" &&
+      window.removeEventListener("scroll", updateScrollDirection);
   });
 
   return (
-    <Show
-      when={
-        isNotExcluded()
-      }
-    >
+    <Show when={isNotExcluded()}>
       <div
         data-visible={open()}
         aria-hidden="true"
@@ -109,8 +116,9 @@ export default function Header() {
 
       <header
         class="peer/header sticky top-0 z-20 flex items-center justify-between gap-y-4 bg-primary text-primary-text h-[--header-height] px-5 pl-3 data-[hidden=true]:-transform-translate-y-[--header-height] duration-500 ease-in-out"
-        data-hidden={scrollDirection() === 'down'} style={{
-          "transition-property": 'translate'
+        data-hidden={scrollDirection() === "down"}
+        style={{
+          "transition-property": "translate",
         }}
       >
         <Link to="/">
@@ -146,12 +154,21 @@ export default function Header() {
           id="nav-menu"
         >
           <ThemeSelector
-            label={(
+            label={
               <span class="flex items-center gap-x-2 text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="text-muted-text size-4.5" width="24" height="24" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-muted-text size-4.5"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" />
+                </svg>
                 Tema del sitio
               </span>
-            )}
+            }
             class="flex justify-between items-end w-full px-6"
           />
 

@@ -16,6 +16,7 @@
     "@corvu/drawer": "^0.2.4",
     "@kobalte/core": "^0.13.11",
     "@libsql/client": "^0.15.15",
+    "@tanstack/pacer": "^0.17.0",
     "@tanstack/router-plugin": "^1.139.14",
     "@tanstack/solid-form": "^1.27.0",
     "@tanstack/solid-query": "^5.90.14",
