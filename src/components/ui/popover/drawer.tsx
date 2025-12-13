@@ -105,7 +105,9 @@ const Drawer = <T extends JSX.Element | undefined>(props: DrawerProps<T>) => (
     {...props}
     side={props.side || "bottom"}
     onOpenChange={
-      (props as DrawerProps<undefined>).setOpen || props.onOpenChange
+      (props as DrawerProps<Element>).trigger
+        ? (props as DrawerProps<undefined>).setOpen
+        : props.onOpenChange
     }
     // @ts-expect-error: strip prop
     overlayClass={null}
