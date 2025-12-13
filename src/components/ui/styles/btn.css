@@ -1,5 +1,5 @@
 .btn {
-  @apply 'flex items-center justify-center font-bold outline-(#0000 solid 2 offset-1) transition-[border-color,color,outline-color,background-color] cursor-pointer disabled:(cursor-not-allowed opacity-50)';
+  @apply 'flex items-center justify-center gap-x-2 font-bold outline-(#0000 solid 2 offset-1) transition-[border-color,color,outline-color,background-color] cursor-pointer disabled:(cursor-not-allowed opacity-50)';
 }
 
 .btn.primary {
